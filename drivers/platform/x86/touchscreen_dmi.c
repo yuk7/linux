@@ -1629,8 +1629,7 @@ static void ts_dmi_add_props(struct i2c_client *client)
 	struct device *dev = &client->dev;
 	int error;
 
-	if (has_acpi_companion(dev) &&
-	    !strncmp(ts_data->acpi_name, client->name, I2C_NAME_SIZE)) {
+	if (has_acpi_companion(dev)) {
 		error = device_create_managed_software_node(dev, ts_data->properties, NULL);
 		if (error)
 			dev_err(dev, "failed to add properties: %d\n", error);
